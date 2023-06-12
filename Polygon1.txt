@@ -1,0 +1,140 @@
+Polygon.java:
+------------
+public class Polygon
+{
+    //private instance variable
+    private int numSides;
+    private double sideLen;
+    private String shapeName;
+    private boolean isValid;
+    
+    //overloader
+    public Polygon(int side, double len, String name)
+    {
+        numSides = side;
+        sideLen = len;
+        shapeName = name;
+    }
+    
+    //defualt constuctor 
+    public Polygon(){
+        numSides = 3;
+        sideLen = 1.0;
+        shapeName = "Triangle";
+        isValid = true;
+    }
+    
+    //getters, accessors
+    public int getNumSides()
+    {
+        return numSides;
+    }
+    public double getSideLen()
+    {
+        return sideLen;
+    }
+    public String getShapeName()
+    {
+        return shapeName;
+    }
+    
+    //is valid? checks if a polygons number of sides and the length of the sides to see if its possible to be a polygon
+    
+    public boolean isPolygonValid()
+    {
+        if(numSides >= 3)
+        {
+            if(sideLen >= 1)
+            {
+                isValid = true;
+            }
+        }
+        else{
+            isValid = false;
+        }
+        return isValid;
+    }
+    
+    
+    
+    //week 2 mark --------------------------
+    
+    //setters, mutators 
+    
+    public void setNumSides(int newNS){
+        if(newNS > 2){
+            numSides = newNS;
+        }
+    }
+    public void setSideLength(double newSL){
+        if(newSL > 0){
+            sideLen = newSL;
+        }
+    }
+    public void setShapeName(String newSN){
+        shapeName = newSN;
+    }
+    
+    //calculatePerimeter calculates the perimeter using the number of sides multiplied by the side length
+    public double calculatePerimeter()
+    {
+        double perimeter = 0;
+        perimeter = numSides * sideLen;
+        return perimeter;
+    }
+    
+    
+    //toString
+    public String toString()
+    {
+        if(isPolygonValid())
+        {
+            String outputTrue = "Your shape is a "+getShapeName()+" and it has "+getNumSides()+" sides. \nIt has a side length of "+getSideLen()+".\n"+
+            "It has perimeter of "+calculatePerimeter() + ".";
+            return outputTrue;
+        }
+        else
+        {
+            String outputFalse = "Not a valid polygon. Your polygon was given a default of 3 sides, was named \"triangle\", and each side has a length of 1.0 units.";
+            return outputFalse;
+        }
+        
+    }
+    
+
+    
+    
+    
+    
+    
+  
+}
+
+PolygonTester.java:
+------------------
+public class PolygonTester {
+    public static void main(String[] args) {
+        System.out.println("\nThis is the output with 5 sides, side length of 6.865, and a name of pentagon");
+        Polygon poly1 = new Polygon(5,6.865,"pentagon");
+        System.out.println(poly1);
+
+        System.out.println("\nThis is the output using the default constructor.");
+        Polygon poly2 = new Polygon();
+        System.out.println(poly2);
+
+        System.out.println("\nThis is an example output for an invalid polygon.");
+        Polygon poly3 = new Polygon(1,785,"line");
+        System.out.println(poly3);
+        
+        
+        System.out.println("\nThis is an example of a custom out put for the setter.");
+        Polygon poly4 = new Polygon(4,10.0,"Box");
+        System.out.println(poly4);
+        
+        poly4.setNumSides(-1);
+        System.out.println("");
+        System.out.println(poly4);
+        
+    }
+}
+
